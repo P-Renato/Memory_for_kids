@@ -1,7 +1,10 @@
 
 export const state = {
   currentLanguage: 'english',
-  listeners: []
+  listeners: [],
+  players: JSON.parse(localStorage.getItem('players')) || [],
+  scores: [],
+  currentPlayerIndex: 0
 };
 
 
