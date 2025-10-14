@@ -1,7 +1,7 @@
 
 
 export async function fetchCountries() {
-    const countryCodes = ['ENG', 'GBR', 'FRA', 'BRA', 'CZE', 'ESP', 'JPN', 'DEU'];
+    const countryCodes = ['ENG', 'GBR', 'FRA', 'PT', 'CZE', 'ESP', 'JPN', 'DEU'];
 
     try {
         const response = await fetch(`https://restcountries.com/v3.1/alpha?codes=${countryCodes.join(',')}`);

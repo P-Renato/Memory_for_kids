@@ -1,30 +1,38 @@
 
 import { animalsByLanguage } from "../database/db.js";
-
+import { state, onLanguageChange } from "../state.js";
+import { audioCache } from "../audioCache.js";
 
 export function createGameBoard(container, language) {
     
-    
-      const animals = animalsByLanguage[language].animals;
-      console.log(animals)
-    
-      const animalKeys = Object.keys(animals);
-      console.log(animalKeys)
-    
-      const duplicatedAnimals = [...animalKeys, ...animalKeys];
-      console.log(duplicatedAnimals)
-    
-      function shuffle(array){
-        return array
-          .map(value => ({ value, sort: Math.random() }))
-          .sort((a, b) => a.sort - b.sort)
-          .map(({ value }) => value);
-      }
-    
-      const shuffledAnimals = shuffle(duplicatedAnimals);
-    
       const board = document.createElement('section');
-      board.classList.add("board-table")
+      board.classList.add("board-table");
+
+      renderBoard(state.currentLanguage);
+
+      onLanguageChange(renderBoard);
+
+      function renderBoard(lang){
+        board.innerHTML = '';
+
+        const animals = animalsByLanguage[lang].animals;
+    
+        const animalKeys = Object.keys(animals);
+
+      
+        const duplicatedAnimals = [...animalKeys, ...animalKeys];
+
+      
+        function shuffle(array){
+          return array
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
+        }
+      
+        const shuffledAnimals = shuffle(duplicatedAnimals);
+      
+
     
     
       shuffledAnimals.forEach((animal) => {
@@ -46,7 +54,7 @@ export function createGameBoard(container, language) {
 
         const animalText = document.createElement('p');
         animalText.classList.add('animal-text');
-        animalText.textContent = animal;
+        animalText.textContent = animals[animal];
 
         back.appendChild(animalText)
         inner.appendChild(front);
@@ -57,7 +65,14 @@ export function createGameBoard(container, language) {
     
         card.addEventListener('click', () => {
           card.classList.toggle('flipped');
+          const currentLang = state.currentLanguage;
+          const audio = audioCache[currentLang]?.[animal];
+          if (audio) {
+            audio.currentTime = 0;
+            audio.play();
+          }
         })   
       });
-      container.appendChild(board)
+    } 
+    container.appendChild(board)
 }

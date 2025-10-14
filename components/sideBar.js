@@ -1,4 +1,12 @@
+
+import { translations } from "../database/db.js";
+import { onLanguageChange, state } from "../state.js";
+
+
 export function createSidebar(container) {
+
+  let players = JSON.parse(localStorage.getItem('players')) || [];
+
   
   const sideBar = document.createElement('aside');
   sideBar.classList.add('sideBar');
@@ -31,8 +39,15 @@ export function createSidebar(container) {
   sideBar.appendChild(buttonStart);
 
   container.appendChild(sideBar);
+    function updateTexts(lang) {
+    const t = translations[lang].ui;
+    label.textContent = t.playerLabel;
+    addPlayer.textContent = t.addPlayer;
+    buttonStart.textContent = t.startGame;
+  }
+  updateTexts(state.currentLanguage);
+  onLanguageChange(updateTexts);
 
-  let players = JSON.parse(localStorage.getItem('players')) || [];
 
   function renderPlayers() {
     playerList.innerHTML = '';
