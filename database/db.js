@@ -112,3 +112,83 @@ export const animalsByLanguage = {
         }
     }
 };
+
+export const translations = {
+  english: {
+    ui: {
+      playerLabel: "Player Name:",
+      addPlayer: "Add Player",
+      startGame: "Start Game",
+      playersTitle: "Players",
+      delete: "Delete",
+      language: "Language",
+      noPlayers: "No players added yet"
+    }
+  },
+  spanish: {
+    ui: {
+      playerLabel: "Nombre del jugador:",
+      addPlayer: "Agregar jugador",
+      startGame: "Iniciar juego",
+      playersTitle: "Jugadores",
+      delete: "Eliminar",
+      language: "Idioma",
+      noPlayers: "Aún no hay jugadores"
+    }
+  },
+  portuguese: {
+    ui: {
+      playerLabel: "Nome do jogador:",
+      addPlayer: "Adicionar jogador",
+      startGame: "Iniciar jogo",
+      playersTitle: "Jogadores",
+      delete: "Excluir",
+      language: "Idioma",
+      noPlayers: "Nenhum jogador adicionado"
+    }
+  },
+  czech: {
+    ui: {
+      playerLabel: "Jméno hráče:",
+      addPlayer: "Přidat hráče",
+      startGame: "Spustit hru",
+      playersTitle: "Hráči",
+      delete: "Smazat",
+      language: "Jazyk",
+      noPlayers: "Zatím žádní hráči"
+    }
+  },
+  french: {
+    ui: {
+      playerLabel: "Nom du joueur :",
+      addPlayer: "Ajouter un joueur",
+      startGame: "Démarrer le jeu",
+      playersTitle: "Joueurs",
+      delete: "Supprimer",
+      language: "Langue",
+      noPlayers: "Aucun joueur ajouté"
+    }
+  },
+  german: {
+    ui: {
+      playerLabel: "Spielername:",
+      addPlayer: "Spieler hinzufügen",
+      startGame: "Spiel starten",
+      playersTitle: "Spieler",
+      delete: "Löschen",
+      language: "Sprache",
+      noPlayers: "Noch keine Spieler hinzugefügt"
+    }
+  },
+  japanese: {
+    ui: {
+      playerLabel: "プレイヤー名：",
+      addPlayer: "プレイヤーを追加",
+      startGame: "ゲーム開始",
+      playersTitle: "プレイヤー",
+      delete: "削除",
+      language: "言語",
+      noPlayers: "まだプレイヤーが追加されていません"
+    }
+  }
+};
