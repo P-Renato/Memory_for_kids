@@ -5,6 +5,7 @@ import { onLanguageChange, state } from "../state.js";
 
 export function createSidebar(container) {
 
+  state.scores = state.players.map(() => 0);
   let players = JSON.parse(localStorage.getItem('players')) || [];
 
   
@@ -55,6 +56,10 @@ export function createSidebar(container) {
         const li = document.createElement('li');
         const text = document.createElement('p');
         text.textContent = `${index + 1} - ${name}`;
+        const liPoints = document.createElement('li')
+        const span = document.createElement('span');
+        span.textContent = `${state.scores[index]} points.`
+
 
         const deletePlayer = document.createElement('button');
         deletePlayer.innerText = 'X';
@@ -62,15 +67,29 @@ export function createSidebar(container) {
         li.appendChild(text)
         li.appendChild(deletePlayer)
         playerList.appendChild(li);
+        playerList.appendChild(liPoints);
 
         deletePlayer.addEventListener('click', ()=> {
             players.splice(index, 1);
+            state.scores.splice(index, 1);
             localStorage.setItem('players', JSON.stringify(players));
             renderPlayers();
         })
     });
   }
   renderPlayers();
+
+  window.addEventListener('updateScores', renderPlayers);
+  window.addEventListener('updateCurrentPlayer', highlightCurrentPlayer);
+
+
+  function highlightCurrentPlayer() {
+    const items = playerList.querySelectorAll('li');
+    items.forEach((li, index) => {
+      li.style.backgroundColor = 
+        index === state.currentPlayerIndex ? 'var(--orangeColor)' : 'transparent';
+    });
+  }
 
   addPlayer.addEventListener('click', () => {
     const newPlayer = input.value.trim();
@@ -96,6 +115,10 @@ export function createSidebar(container) {
     input.value = '';
   })
 
+  buttonStart.addEventListener('click', () => {
+    const event = new Event('restartGame');
+    window.dispatchEvent(event);
+  });
 
 
   return sideBar;

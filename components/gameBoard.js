@@ -3,6 +3,12 @@ import { animalsByLanguage } from "../database/db.js";
 import { state, onLanguageChange } from "../state.js";
 import { audioCache } from "../audioCache.js";
 
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+let matchedPairs = 0;
+
+
 export function createGameBoard(container, language) {
     
       const board = document.createElement('section');
@@ -19,7 +25,6 @@ export function createGameBoard(container, language) {
     
         const animalKeys = Object.keys(animals);
 
-      
         const duplicatedAnimals = [...animalKeys, ...animalKeys];
 
       
@@ -32,9 +37,6 @@ export function createGameBoard(container, language) {
       
         const shuffledAnimals = shuffle(duplicatedAnimals);
       
-
-    
-    
       shuffledAnimals.forEach((animal) => {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -64,15 +66,80 @@ export function createGameBoard(container, language) {
         board.appendChild(card);
     
         card.addEventListener('click', () => {
-          card.classList.toggle('flipped');
-          const currentLang = state.currentLanguage;
-          const audio = audioCache[currentLang]?.[animal];
-          if (audio) {
-            audio.currentTime = 0;
-            audio.play();
-          }
+          handleCardClick(card)
+          
         })   
       });
     } 
+    function handleCardClick(card) {
+      if (lockBoard || card === firstCard) return; // prevent double-clicking the same card
+
+      card.classList.add('flipped');
+
+      if (!firstCard) {
+        firstCard = card;
+        return;
+      }
+
+      secondCard = card;
+      lockBoard = true;
+
+      checkForMatch();
+
+      const currentLang = state.currentLanguage;
+      const audio = audioCache[currentLang]?.[animal];
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
+
+    function checkForMatch() {
+      const isMatch = firstCard.dataset.animal === secondCard.dataset.animal;
+
+      if (isMatch) {
+        disableMatchedCards();
+      } else {
+        unflipCards();
+      }
+    }
+
+    function disableMatchedCards() {
+      firstCard.removeEventListener('click', handleCardClick);
+      secondCard.removeEventListener('click', handleCardClick);
+
+      matchedPairs++;
+      resetTurn();
+
+      state.scores[state.currentPlayerIndex]++;
+
+      window.dispatchEvent(new Event('updateScores'));
+
+      if (matchedPairs === 10) { // adjust depending on total animals
+        setTimeout(() => alert('🎉 You found all pairs!'), 500);
+      }
+    }
+
+    function unflipCards() {
+      setTimeout(() => {
+        firstCard.classList.remove('flipped');
+        secondCard.classList.remove('flipped');
+        resetTurn();
+        state.currentPlayerIndex = (state.currentPlayerIndex + 1) % state.players.length;
+        window.dispatchEvent(new Event('updateCurrentPlayer'));
+      }, 1000);
+    }
+
+    function resetTurn() {
+      [firstCard, secondCard, lockBoard] = [null, null, false];
+    }
+
+    window.addEventListener('restartGame', () => {
+      board.innerHTML = '';
+      matchedPairs = 0;
+      renderBoard(state.currentLanguage);
+    });
+
+
     container.appendChild(board)
 }
