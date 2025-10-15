@@ -115,7 +115,7 @@ export function createGameBoard(container, language) {
 
       window.dispatchEvent(new Event('updateScores'));
 
-      if (matchedPairs === 10) { // adjust depending on total animals
+      if (matchedPairs === 10) { // adjust when adding cards animals
         setTimeout(() => alert('🎉 You found all pairs!'), 500);
       }
     }
