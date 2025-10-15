@@ -58,8 +58,8 @@ export function createSidebar(container) {
         text.textContent = `${index + 1} - ${name}`;
         const liPoints = document.createElement('li')
         const span = document.createElement('span');
-        span.textContent = `${state.scores[index]} points.`
-
+        span.innerText = `${state.scores[index]} points`
+        liPoints.appendChild(span)
 
         const deletePlayer = document.createElement('button');
         deletePlayer.innerText = 'X';
@@ -87,7 +87,7 @@ export function createSidebar(container) {
     const items = playerList.querySelectorAll('li');
     items.forEach((li, index) => {
       li.style.backgroundColor = 
-        index === state.currentPlayerIndex ? 'var(--orangeColor)' : 'transparent';
+      index === state.currentPlayerIndex ? 'var(--orangeColor)' : 'transparent';
     });
   }
 
