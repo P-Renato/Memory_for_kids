@@ -69,40 +69,44 @@ export function createGameBoard(container, language) {
           handleCardClick(card)
           
         })   
+        function handleCardClick(card) {
+          if (lockBoard || card === firstCard) return; // prevent double-clicking the same card
+    
+          card.classList.add('flipped');
+    
+          const animal = card.dataset.animal;
+          const currentLang = state.currentLanguage;
+          const audio = audioCache[currentLang]?.[animal];
+          console.log("🔊 Play attempt:", animal, audio?.currentTime, audio?.paused);
+          if (audio) {
+            audio.currentTime = 0;
+            console.log("Trying to play:", animal, audio.currentTime, audio.paused);
+
+            audio.play();
+          }
+          if (!firstCard) {
+            firstCard = card;
+            return;
+          }
+    
+          secondCard = card;
+          lockBoard = true;
+    
+          checkForMatch();
+    
+        }
+        function checkForMatch() {
+          const isMatch = firstCard.dataset.animal === secondCard.dataset.animal;
+    
+          if (isMatch) {
+            disableMatchedCards();
+          } else {
+            unflipCards();
+          }
+        }
       });
     } 
-    function handleCardClick(card) {
-      if (lockBoard || card === firstCard) return; // prevent double-clicking the same card
 
-      card.classList.add('flipped');
-
-      if (!firstCard) {
-        firstCard = card;
-        return;
-      }
-
-      secondCard = card;
-      lockBoard = true;
-
-      checkForMatch();
-
-      const currentLang = state.currentLanguage;
-      const audio = audioCache[currentLang]?.[animal];
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play();
-      }
-    }
-
-    function checkForMatch() {
-      const isMatch = firstCard.dataset.animal === secondCard.dataset.animal;
-
-      if (isMatch) {
-        disableMatchedCards();
-      } else {
-        unflipCards();
-      }
-    }
 
     function disableMatchedCards() {
       firstCard.removeEventListener('click', handleCardClick);
