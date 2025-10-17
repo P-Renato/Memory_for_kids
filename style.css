@@ -41,7 +41,7 @@ h1{
 
 .card {
   width: 8em;
-  height: 8em;
+  height: 10em;
   perspective: 1000px; /* for 3D effect */
   margin: 2em;
 }
@@ -67,7 +67,9 @@ h1{
 }
 
 .card-front {
-  background-color: #eee; 
+  background-image: url(public/new-images/backcard.png);
+  background-size: cover;
+  background-position: center;
   
 }
 
