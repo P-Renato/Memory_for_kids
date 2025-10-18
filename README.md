@@ -18,4 +18,4 @@
 
 - My next step was to apply the language selector to the animals names on the cards, once the side bar was already working.
 
-- I am working now on the game logic.
+- I now set the game logic, though not entirely, once I am still deciding on how to display the final score, and still running some tests.
