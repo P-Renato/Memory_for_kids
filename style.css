@@ -110,13 +110,16 @@ h1{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 15em;
+    max-width: 18em;
+    max-height: vh;
     align-items: center;
-    /* border: 1px solid violet; */
+    border: 5px solid var(--orangeColor);
+    border-radius: 12px;
+    margin: 2em;
 }
 
 .sideBar > * {
-    margin: 2em;
+    margin: 1.5em;
     
 }
 
