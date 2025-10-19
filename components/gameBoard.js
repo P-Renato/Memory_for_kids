@@ -1,6 +1,7 @@
 import { animalsByLanguage } from "../database/db.js";
 import { state, onLanguageChange } from "../state.js";
 import { audioCache } from "../audioCache.js";
+import { showResults } from "./showResults.js";
 
 let firstCard = null;
 let secondCard = null;
@@ -15,7 +16,6 @@ export function createGameBoard(container, language) {
   renderBoard(state.currentLanguage);
   onLanguageChange(renderBoard);
 
-  // ✅ Define the click handler ONCE here
   function handleCardClick(e) {
     const card = e.currentTarget;
 
@@ -23,7 +23,7 @@ export function createGameBoard(container, language) {
 
     card.classList.add("flipped");
 
-    // ✅ Play audio
+    // audio
     const animal = card.dataset.animal;
     const currentLang = state.currentLanguage;
     const audio = audioCache[currentLang]?.[animal];
@@ -42,7 +42,6 @@ export function createGameBoard(container, language) {
     checkForMatch();
   }
 
-  // ✅ Render board for current language
   function renderBoard(lang) {
     board.innerHTML = "";
 
@@ -64,7 +63,7 @@ export function createGameBoard(container, language) {
 
       const back = document.createElement("div");
       back.classList.add("card-back");
-      back.style.backgroundImage = `url('public/${animal}.jpg')`;
+      back.style.backgroundImage = `url('public/${animal}_new.png')`;
 
       const animalText = document.createElement("p");
       animalText.classList.add("animal-text");
@@ -76,7 +75,7 @@ export function createGameBoard(container, language) {
       card.appendChild(inner);
       board.appendChild(card);
 
-      // ✅ Attach shared handler (no wrapper)
+      // Attach shared handler (no wrapper)
       card.addEventListener("click", handleCardClick);
     });
   }
@@ -108,9 +107,45 @@ export function createGameBoard(container, language) {
 
     resetTurn();
 
-    if (matchedPairs === 10) {
+    let totalPairs = 10;
+    if (matchedPairs === totalPairs) {
+      console.log(matchedPairs)
+      showResults();
       setTimeout(() => alert("🎉 You found all pairs!"), 500);
     }
+  }
+
+  function showResults() {
+      const scores = state.scores;
+      const players = state.players;
+
+      const maxScore = Math.max(...scores);
+      const winnerIndex = scores.indexOf(maxScore);
+      const winnerName = players[winnerIndex];
+      console.log(winnerName)
+
+      const overlay = document.createElement('div');
+      overlay.classList.add('results-overlay');
+
+      const title = document.createElement('h2');
+      title.textContent = `🏆 Winner: ${winnerName}!`;
+
+      const list = document.createElement('ul');
+      players.forEach((player, i) => {
+          const li = document.createElement('li');
+          li.textContent = `${player}: ${scores[i]} points`;
+          list.appendChild(li);
+      });
+
+      const restartButton = document.createElement('button');
+      restartButton.textContent = 'Play Again';
+      restartButton.addEventListener('click', () => {
+          overlay.remove();
+          window.dispatchEvent(new Event('restartGame'));
+      });
+
+      overlay.append(title, list, restartButton);
+      container.appendChild(overlay);
   }
 
   function unflipCards() {
@@ -121,7 +156,7 @@ export function createGameBoard(container, language) {
       state.currentPlayerIndex =
         (state.currentPlayerIndex + 1) % state.players.length;
       window.dispatchEvent(new Event("updateCurrentPlayer"));
-    }, 1000);
+    }, 2500);
   }
 
   function resetTurn() {

@@ -6,6 +6,7 @@
     --borel: "Borel", cursive;
     --moo_lah_lah: "Moo Lah Lah", sans-serif;
     --rye: "Rye", serif;
+    --quicksand: "Quicksand", sans-serif;
     --orangeColor: rgb(235, 90, 46);
     --orangeColorHover: rgb(219, 113, 81);
 }
@@ -25,7 +26,7 @@ html {
 }
 
 .container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: grid; 
     grid-template-columns: 1fr 25rem;
     height: 100vh;
@@ -35,8 +36,9 @@ html {
 
 h1{
     text-align: center;
-    font-family: var(--nosifer);
+    font-family: var(--quicksand);
     color: var(--orangeColor);
+    font-size: 4em;
 }
 
 .board-table {

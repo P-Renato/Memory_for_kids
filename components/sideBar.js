@@ -56,7 +56,7 @@ export function createSidebar(container) {
         const li = document.createElement('li');
         const text = document.createElement('p');
         text.textContent = `${index + 1} - ${name}`;
-        const liPoints = document.createElement('li')
+        const liPoints = document.createElement('li');
         const span = document.createElement('span');
         span.innerText = `${state.scores[index]} points`
         liPoints.appendChild(span)
