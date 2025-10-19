@@ -126,7 +126,7 @@ export function createGameBoard(container, language) {
       state.currentPlayerIndex =
         (state.currentPlayerIndex + 1) % state.players.length;
       window.dispatchEvent(new Event("updateCurrentPlayer"));
-    }, 500);
+    }, 2500);
   }
 
   function resetTurn() {
