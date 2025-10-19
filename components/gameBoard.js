@@ -7,6 +7,7 @@ let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 let matchedPairs = 0;
+let victories = 0;
 let board;
 
 export function createGameBoard(container, language) {
@@ -110,43 +111,12 @@ export function createGameBoard(container, language) {
     let totalPairs = 10;
     if (matchedPairs === totalPairs) {
       console.log(matchedPairs)
-      showResults();
+      showResults(container);
       setTimeout(() => alert("🎉 You found all pairs!"), 500);
+      
     }
   }
 
-  function showResults() {
-      const scores = state.scores;
-      const players = state.players;
-
-      const maxScore = Math.max(...scores);
-      const winnerIndex = scores.indexOf(maxScore);
-      const winnerName = players[winnerIndex];
-      console.log(winnerName)
-
-      const overlay = document.createElement('div');
-      overlay.classList.add('results-overlay');
-
-      const title = document.createElement('h2');
-      title.textContent = `🏆 Winner: ${winnerName}!`;
-
-      const list = document.createElement('ul');
-      players.forEach((player, i) => {
-          const li = document.createElement('li');
-          li.textContent = `${player}: ${scores[i]} points`;
-          list.appendChild(li);
-      });
-
-      const restartButton = document.createElement('button');
-      restartButton.textContent = 'Play Again';
-      restartButton.addEventListener('click', () => {
-          overlay.remove();
-          window.dispatchEvent(new Event('restartGame'));
-      });
-
-      overlay.append(title, list, restartButton);
-      container.appendChild(overlay);
-  }
 
   function unflipCards() {
     setTimeout(() => {
@@ -156,7 +126,7 @@ export function createGameBoard(container, language) {
       state.currentPlayerIndex =
         (state.currentPlayerIndex + 1) % state.players.length;
       window.dispatchEvent(new Event("updateCurrentPlayer"));
-    }, 2500);
+    }, 500);
   }
 
   function resetTurn() {
