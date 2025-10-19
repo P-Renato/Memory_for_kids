@@ -2,7 +2,7 @@
     --puddles:  "Rubik Puddles", system-ui;
     --nosifer:  "Nosifer", sans-serif;
     --ole: "Ole", cursive;
-    --moutains_of_xmas: "Mountains of Christmas", serif;
+    --mountains_of_xmas: "Mountains of Christmas", serif;
     --borel: "Borel", cursive;
     --moo_lah_lah: "Moo Lah Lah", sans-serif;
     --rye: "Rye", serif;
@@ -112,17 +112,18 @@ h1{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 18em;
+    max-width: 22em;
     max-height: vh;
     align-items: center;
     border: 5px solid var(--orangeColor);
     border-radius: 12px;
     margin: 2em;
+    padding: 2em;
 }
 
 .sideBar > * {
     margin: 1.5em;
-    
+    padding: 1em;
 }
 
 label{
@@ -249,7 +250,7 @@ input, .start-button, .add-player {
 
 .player-list {
     list-style: none;
-    font-family: var(--moo_lah_lah);
+    font-family: var(--quicksand);
     font-size: 2.5em;
     color: var(--orangeColor);
 }
@@ -261,8 +262,9 @@ input, .start-button, .add-player {
 }
 li .delete-player {
     width: .5rem;
-    font-family: var(--moo_lah_lah);
+    font-family: var(--quicksand);
+    font-weight: 700;
     color: var(--orangeColor);
-    background-color: white;
+    background-color: transparent;
     font-size: .6em;
 }

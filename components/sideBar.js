@@ -6,8 +6,12 @@ import { onLanguageChange, state } from "../state.js";
 export function createSidebar(container) {
 
   state.scores = state.players.map(() => 0);
-  let players = JSON.parse(localStorage.getItem('players')) || [];
+  state.players = JSON.parse(localStorage.getItem('players')) || [];
+  state.victories = JSON.parse(localStorage.getItem('victories')) || [];
 
+  state.scores = state.players.map(() => 0)
+  console.log("Players ", state.players)
+  console.log("Victories from sidebar: ",state.victories);
   
   const sideBar = document.createElement('aside');
   sideBar.classList.add('sideBar');
@@ -52,14 +56,15 @@ export function createSidebar(container) {
 
   function renderPlayers() {
     playerList.innerHTML = '';
-    players.forEach((name,index) => {
+    state.players.forEach((name,index) => {
         const li = document.createElement('li');
         const text = document.createElement('p');
         text.textContent = `${index + 1} - ${name}`;
-        const liPoints = document.createElement('li');
-        const span = document.createElement('span');
-        span.innerText = `${state.scores[index]} points`
-        liPoints.appendChild(span)
+
+        // const liPoints = document.createElement('li');
+        // const span = document.createElement('span');
+        // span.innerText = `${state.scores[index]} points`
+        // liPoints.appendChild(span)
 
         const deletePlayer = document.createElement('button');
         deletePlayer.innerText = 'X';
@@ -67,7 +72,7 @@ export function createSidebar(container) {
         li.appendChild(text)
         li.appendChild(deletePlayer)
         playerList.appendChild(li);
-        playerList.appendChild(liPoints);
+        // playerList.appendChild(liPoints);
 
         deletePlayer.addEventListener('click', ()=> {
             players.splice(index, 1);
@@ -86,8 +91,16 @@ export function createSidebar(container) {
   function highlightCurrentPlayer() {
     const items = playerList.querySelectorAll('li');
     items.forEach((li, index) => {
-      li.style.backgroundColor = 
-      index === state.currentPlayerIndex ? 'var(--orangeColor)' : 'transparent';
+      li.style.fontWeight = 
+      index === state.currentPlayerIndex ? 'bold' : 'normal';
+      li.style.fontFamily = 
+      index === state.currentPlayerIndex ? 'var(--borel)' : 'var(--quicksand)' ;
+      li.style.borderRight =
+      index === state.currentPlayerIndex ? '3px solid var(--orangeColor)' : 'none';
+      li.style.transform = 
+        index === state.currentPlayerIndex ? 'scale(1.05)' : 'scale(1)';
+      li.style.transition = 'transform 0.8s ease';
+
     });
   }
 
@@ -108,9 +121,12 @@ export function createSidebar(container) {
       alert('Maximum of 4 players allowed.');
       return;
     }
+    state.victories[newPlayer] = state.victories[newPlayer] || 0;
 
-    players.push(newPlayer);
-    localStorage.setItem('players', JSON.stringify(players));
+
+    state.players.push(newPlayer);
+    localStorage.setItem('players', JSON.stringify(state.players));
+    localStorage.setItem('victories', JSON.stringify(state.victories));
     renderPlayers();
     input.value = '';
   })
