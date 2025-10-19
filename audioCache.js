@@ -31,19 +31,19 @@ Object.keys(animalsByLanguage).forEach(langKey => {
   audioCache[langKey] = {};
 
   Object.keys(animals).forEach(animal => {
-    // ✅ IMPORTANT: use langCode (en, es, pt) instead of langKey (english, spanish)
+    
     const filePath = `output/${langCode}/${animal}.mp3`;
 
     const audio = new Audio(filePath);
 
-    // 🧪 Debugging feedback
-    audio.addEventListener("canplaythrough", () => {
-      console.log(`✅ Loaded audio: ${filePath}`);
-    });
 
-    audio.addEventListener("error", (e) => {
-      console.error(`❌ Failed to load: ${filePath}`, e);
-    });
+    // audio.addEventListener("canplaythrough", () => {
+    //   console.log(`✅ Loaded audio: ${filePath}`);
+    // });
+
+    // audio.addEventListener("error", (e) => {
+    //   console.error(`❌ Failed to load: ${filePath}`, e);
+    // });
 
     audioCache[langKey][animal] = audio;
   });
