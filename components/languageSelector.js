@@ -41,6 +41,8 @@ export function createLanguageSelector(container, countries) {
         case 'JPN': setLanguage('japanese'); break;
         default: setLanguage('english');
       }
+      const boardTable = document.querySelector('.board-table');
+      boardTable.classList.remove('centered-board')
     });
 
     

@@ -7,7 +7,6 @@ let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 let matchedPairs = 0;
-let victories = 0;
 let board;
 
 export function createGameBoard(container, language) {
@@ -110,10 +109,13 @@ export function createGameBoard(container, language) {
 
     let totalPairs = 10;
     if (matchedPairs === totalPairs) {
-      console.log(matchedPairs)
-      showResults(container);
-      setTimeout(() => alert("🎉 You found all pairs!"), 500);
-      
+      const boardContainer = document.querySelector('.board-table');
+      if(boardContainer){
+        board.classList.add('centered-board')
+        boardContainer.innerHTML= "";
+        showResults(boardContainer);
+
+      }      
     }
   }
 
@@ -136,6 +138,7 @@ export function createGameBoard(container, language) {
   window.addEventListener("restartGame", () => {
     board.innerHTML = "";
     matchedPairs = 0;
+    board.classList.remove('centered-board');
     renderBoard(state.currentLanguage);
   });
 

@@ -43,9 +43,8 @@ h1{
 
 .board-table {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 .card {
@@ -142,6 +141,12 @@ label{
     width: 100%;
 }
 
+.input-group input {
+    background: transparent;
+    border-radius: 15px;
+    padding: 0.4em;
+}
+
 input, .start-button, .add-player {
     width: 14rem;
     height: 2rem;
@@ -152,15 +157,20 @@ input, .start-button, .add-player {
   display: block;
   font-weight: 600;
   margin-bottom: 8px;
+  
 }
 
 .sideBar button {
   background-color: var(--orangeColor);
+  font-family: var(--quicksand);
   color: white;
   cursor: pointer;
   border: none;
   border-radius: 22px;
   width: 12em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sideBar button:hover {
@@ -267,4 +277,46 @@ li .delete-player {
     color: var(--orangeColor);
     background-color: transparent;
     font-size: .6em;
+}
+
+.results-overlay{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-family: var(--quicksand);
+  color: var(--orangeColor);
+  font-weight: bold;
+  gap: 1em;
+  font-size: 1.2em;
+  /* border: 1px solid red; */
+}
+
+.victory-list,
+.points-list {
+  list-style: none;
+}
+
+.results-overlay button {
+  background-color: var(--orangeColor);
+  font-family: var(--quicksand);
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 22px;
+  width: 12em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+}
+
+.centered-board {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 }

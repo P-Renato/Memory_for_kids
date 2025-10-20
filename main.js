@@ -1,6 +1,7 @@
 
 
-
+import { state, onLanguageChange } from './state.js';
+import { translations } from './database/db.js';
 import { fetchCountries } from "./utils/fetch.js";
 import { createSidebar } from "./components/sideBar.js";
 import { createLanguageSelector } from "./components/languageSelector.js";
@@ -19,8 +20,17 @@ async function init() {
   const sideBar = createSidebar(container);
   createLanguageSelector(sideBar, countries);
 
-  console.log('Fetched countries:', countries)
-  
+  console.log('Fetched countries:', countries);
+
+  function updateHeaderText() {
+    const header = document.querySelector('#game-title'); // adjust selector if different
+    if (!header) return;
+    const t = translations[state.currentLanguage].ui;
+    header.textContent = t.headerTitle;
+  }
+  updateHeaderText();
+  onLanguageChange(updateHeaderText);
+
 }
 
 init()
