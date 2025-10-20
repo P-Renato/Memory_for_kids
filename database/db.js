@@ -122,7 +122,12 @@ export const translations = {
       playersTitle: "Players",
       delete: "Delete",
       language: "Language",
-      noPlayers: "No players added yet"
+      noPlayers: "No players added yet",
+      headerTitle: "Memory Game",       
+      winnerText: "Winner",             
+      pointsText: "points",             
+      victoriesText: "victories",
+      playAgain: "Play Again"
     }
   },
   spanish: {
@@ -133,7 +138,12 @@ export const translations = {
       playersTitle: "Jugadores",
       delete: "Eliminar",
       language: "Idioma",
-      noPlayers: "Aún no hay jugadores"
+      noPlayers: "Aún no hay jugadores",
+      headerTitle: "Juego de Memoria",
+      winnerText: "Ganador",
+      pointsText: "puntos",
+      victoriesText: "victorias",
+      playAgain: "Jugar de nuevo"
     }
   },
   portuguese: {
@@ -144,7 +154,12 @@ export const translations = {
       playersTitle: "Jogadores",
       delete: "Excluir",
       language: "Idioma",
-      noPlayers: "Nenhum jogador adicionado"
+      noPlayers: "Nenhum jogador adicionado",
+      headerTitle: "Jogo da Memória",
+      winnerText: "Vencedor",
+      pointsText: "pontos",
+      victoriesText: "vitórias",
+      playAgain: "Jogar novamente"
     }
   },
   czech: {
@@ -155,7 +170,12 @@ export const translations = {
       playersTitle: "Hráči",
       delete: "Smazat",
       language: "Jazyk",
-      noPlayers: "Zatím žádní hráči"
+      noPlayers: "Zatím žádní hráči",
+      headerTitle: "Paměťová hra",
+      winnerText: "Vítěz",
+      pointsText: "body",
+      victoriesText: "výhry",
+      playAgain: "Hrát znovu"
     }
   },
   french: {
@@ -166,7 +186,12 @@ export const translations = {
       playersTitle: "Joueurs",
       delete: "Supprimer",
       language: "Langue",
-      noPlayers: "Aucun joueur ajouté"
+      noPlayers: "Aucun joueur ajouté",
+      headerTitle: "Jeu de Mémoire",
+      winnerText: "Gagnant",
+      pointsText: "points",
+      victoriesText: "victoires",
+      playAgain: "Rejouer"
     }
   },
   german: {
@@ -177,7 +202,12 @@ export const translations = {
       playersTitle: "Spieler",
       delete: "Löschen",
       language: "Sprache",
-      noPlayers: "Noch keine Spieler hinzugefügt"
+      noPlayers: "Noch keine Spieler hinzugefügt",
+      headerTitle: "Memory-Spiel",
+      winnerText: "Gewinner",
+      pointsText: "Punkte",
+      victoriesText: "Siege",
+      playAgain: "Nochmal spielen"
     }
   },
   japanese: {
@@ -188,7 +218,12 @@ export const translations = {
       playersTitle: "プレイヤー",
       delete: "削除",
       language: "言語",
-      noPlayers: "まだプレイヤーが追加されていません"
+      noPlayers: "まだプレイヤーが追加されていません",
+      headerTitle: "神経衰弱ゲーム",
+      winnerText: "勝者",
+      pointsText: "点数",
+      victoriesText: "勝利",
+      playAgain: "もう一度遊ぶ"
     }
   }
 };
