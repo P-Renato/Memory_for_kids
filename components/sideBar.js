@@ -5,7 +5,7 @@ import { onLanguageChange, state } from "../state.js";
 
 export function createSidebar(container) {
 
-  state.scores = state.players.map(() => 0);
+
   state.players = JSON.parse(localStorage.getItem('players')) || [];
   state.victories = JSON.parse(localStorage.getItem('victories')) || [];
 
@@ -112,12 +112,12 @@ export function createSidebar(container) {
       return;
     }
 
-    if (players.includes(newPlayer)) {
+    if (state.players.includes(newPlayer)) {
       alert('This player already exists.');
       return;
     }
 
-    if (players.length >= 4) {
+    if (state.players.length >= 4) {
       alert('Maximum of 4 players allowed.');
       return;
     }
