@@ -22,6 +22,8 @@ export function createSidebar(container) {
   const input = document.createElement('input');
   const addPlayer = document.createElement('button');
   const buttonStart = document.createElement('button');
+  const h1 = document.createElement('h1');
+  h1.classList.add('game-title');
 
 
   label.htmlFor = 'player';
@@ -38,6 +40,7 @@ export function createSidebar(container) {
 
   inputGroup.appendChild(label);
   inputGroup.appendChild(input);
+  sideBar.appendChild(h1);
   sideBar.appendChild(playerList);
   sideBar.appendChild(inputGroup);
   sideBar.appendChild(addPlayer);
@@ -52,6 +55,14 @@ export function createSidebar(container) {
   }
   updateTexts(state.currentLanguage);
   onLanguageChange(updateTexts);
+  function updateHeaderText() {
+    const header = document.querySelector('.game-title'); // adjust selector if different
+    if (!header) return;
+    const t = translations[state.currentLanguage].ui;
+    header.textContent = t.headerTitle;
+  }
+  updateHeaderText();
+  onLanguageChange(updateHeaderText);
 
 
   function renderPlayers() {
@@ -75,9 +86,9 @@ export function createSidebar(container) {
         // playerList.appendChild(liPoints);
 
         deletePlayer.addEventListener('click', ()=> {
-            players.splice(index, 1);
+            state.players.splice(index, 1);
             state.scores.splice(index, 1);
-            localStorage.setItem('players', JSON.stringify(players));
+            localStorage.setItem('players', JSON.stringify(state.players));
             renderPlayers();
         })
     });

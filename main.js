@@ -22,14 +22,6 @@ async function init() {
 
   console.log('Fetched countries:', countries);
 
-  function updateHeaderText() {
-    const header = document.querySelector('#game-title'); // adjust selector if different
-    if (!header) return;
-    const t = translations[state.currentLanguage].ui;
-    header.textContent = t.headerTitle;
-  }
-  updateHeaderText();
-  onLanguageChange(updateHeaderText);
 
 }
 
