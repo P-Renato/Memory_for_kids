@@ -1,4 +1,4 @@
-import { animalsByLanguage } from "../database/db.js";
+import { animalsByLanguage, translations } from "../database/db.js";
 import { state, onLanguageChange } from "../state.js";
 import { audioCache } from "../audioCache.js";
 import { showResults } from "./showResults.js";
@@ -60,10 +60,22 @@ export function createGameBoard(container, language) {
 
       const front = document.createElement("div");
       front.classList.add("card-front");
+      const cardText = document.createElement('p');
+      cardText.classList.add('card-text')
+      front.appendChild(cardText);
 
       const back = document.createElement("div");
       back.classList.add("card-back");
       back.style.backgroundImage = `url('public/${animal}_new.png')`;
+      
+      function updateHeaderText() {
+          const backCardText = document.querySelector('.card-text'); // adjust selector if different
+          if (!backCardText) return;
+          const t = translations[state.currentLanguage].ui;
+          backCardText.innerText = t.headerTitle;
+        }
+        updateHeaderText();
+        onLanguageChange(updateHeaderText);
 
       const animalText = document.createElement("p");
       animalText.classList.add("animal-text");
@@ -101,22 +113,36 @@ export function createGameBoard(container, language) {
     firstCard.removeEventListener("click", handleCardClick);
     secondCard.removeEventListener("click", handleCardClick);
 
+    setTimeout(() => {
+      firstCard.classList.add("matched-anim");
+      secondCard.classList.add("matched-anim");
+
+    }, 600)
     matchedPairs++;
     state.scores[state.currentPlayerIndex]++;
     window.dispatchEvent(new Event("updateScores"));
 
-    resetTurn();
+    setTimeout(() => {
+      firstCard.classList.add("matched-hidden");
+      secondCard.classList.add("matched-hidden");
 
-    let totalPairs = 10;
-    if (matchedPairs === totalPairs) {
-      const boardContainer = document.querySelector('.board-table');
-      if(boardContainer){
-        board.classList.add('centered-board')
-        boardContainer.innerHTML= "";
-        showResults(boardContainer);
+      // Ensure they cannot be focused or clicked
+      firstCard.tabIndex = -1;
+      secondCard.tabIndex = -1;
 
-      }      
-    }
+      resetTurn();
+
+      let totalPairs = 10;
+      if (matchedPairs === totalPairs) {
+        const boardContainer = document.querySelector('.board-table');
+        if(boardContainer){
+          board.classList.add('centered-board')
+          boardContainer.innerHTML= "";
+          showResults(boardContainer);
+
+        }      
+      }
+    }, 1000);
   }
 
 

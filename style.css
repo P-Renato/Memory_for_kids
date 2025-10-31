@@ -324,3 +324,15 @@ li .delete-player {
   height: 100%;
   justify-content: center;
 }
+
+.card.matched-anim {
+  transition: transform 1.85s ease, opacity 1.85s ease;
+  transform: scale(0.92);
+  opacity: 0.6;
+}
+
+
+.card.matched-hidden {
+  visibility: hidden;     
+  pointer-events: none;   
+}
