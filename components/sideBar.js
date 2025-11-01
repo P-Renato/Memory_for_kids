@@ -56,7 +56,7 @@ export function createSidebar(container) {
   updateTexts(state.currentLanguage);
   onLanguageChange(updateTexts);
   function updateHeaderText() {
-    const header = document.querySelector('.game-title'); // adjust selector if different
+    const header = document.querySelector('.game-title'); 
     if (!header) return;
     const t = translations[state.currentLanguage].ui;
     header.textContent = t.headerTitle;

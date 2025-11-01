@@ -79,7 +79,20 @@ h1{
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-text {
+  color: #dba641;
+  font-family: var(--rye);
+  font-size: 1.2em;
+  margin-bottom: .6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
 }
 
 .card-inner {
@@ -143,6 +156,7 @@ label{
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
 }
 
 .input-group input {
@@ -267,15 +281,18 @@ input, .start-button, .add-player {
     font-family: var(--quicksand);
     font-size: 2.5em;
     color: var(--orangeColor);
+    
 }
 
 .player-list  li {
     width: 8em;
+    
     display: flex;
     justify-content: space-around;
 }
 li .delete-player {
-    width: .5rem;
+    width: 1.5rem;
+    height: 1em;
     font-family: var(--quicksand);
     font-weight: 700;
     color: var(--orangeColor);

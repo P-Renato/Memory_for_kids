@@ -14,7 +14,16 @@ export function createGameBoard(container, language) {
   board.classList.add("board-table");
 
   renderBoard(state.currentLanguage);
-  onLanguageChange(renderBoard);
+  onLanguageChange((lang) => {
+    matchedPairs = 0;
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+    board.innerHTML = "";
+    board.classList.remove('centered-board');
+    renderBoard(lang);
+  });
+
 
   function handleCardClick(e) {
     const card = e.currentTarget;
@@ -69,10 +78,8 @@ export function createGameBoard(container, language) {
       back.style.backgroundImage = `url('public/${animal}_new.png')`;
       
       function updateHeaderText() {
-          const backCardText = document.querySelector('.card-text'); // adjust selector if different
-          if (!backCardText) return;
           const t = translations[state.currentLanguage].ui;
-          backCardText.innerText = t.headerTitle;
+          cardText.innerText = t.headerTitle;
         }
         updateHeaderText();
         onLanguageChange(updateHeaderText);
@@ -101,6 +108,8 @@ export function createGameBoard(container, language) {
 
   function checkForMatch() {
     const isMatch = firstCard.dataset.animal === secondCard.dataset.animal;
+
+    console.log("Comparing cards:", firstCard.dataset.animal, secondCard.dataset.animal);
 
     if (isMatch) {
       disableMatchedCards();
@@ -131,6 +140,8 @@ export function createGameBoard(container, language) {
       secondCard.tabIndex = -1;
 
       resetTurn();
+
+      window.dispatchEvent(new Event("updateCurrentPlayer"));
 
       let totalPairs = 10;
       if (matchedPairs === totalPairs) {

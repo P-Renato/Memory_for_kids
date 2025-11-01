@@ -5,11 +5,14 @@ export function showResults(container) {
     const scores = state.scores;
     const players = state.players;
 
-    const t = translations[state.currentLanguage].ui;
+    const t = translations[state.currentLanguage]?.ui || translations.english.ui;
     const maxScore = Math.max(...scores);
     const winnerIndex = scores.indexOf(maxScore);
     const winnerName = players[winnerIndex];
     console.log(winnerName);
+    console.log("Current language:", state.currentLanguage);
+    console.log("Translations:", translations[state.currentLanguage]);
+
 
     if (!state.victories[winnerName]) {
         state.victories[winnerName] = 0;
