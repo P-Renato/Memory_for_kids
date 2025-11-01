@@ -83,6 +83,7 @@ h1{
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .card-text {
@@ -94,7 +95,6 @@ h1{
   text-overflow: ellipsis;
   width: 80%;
 }
-
 .card-inner {
   transition: transform 0.6s;
   transform-style: preserve-3d;
