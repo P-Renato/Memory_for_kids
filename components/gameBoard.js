@@ -61,26 +61,25 @@ export function createGameBoard(container, language) {
       const front = document.createElement("div");
       front.classList.add("card-front");
       const cardText = document.createElement('p');
-      cardText.classList.add('card-text')
+      cardText.classList.add('card-text');
       front.appendChild(cardText);
 
+      
       const back = document.createElement("div");
       back.classList.add("card-back");
       back.style.backgroundImage = `url('public/${animal}_new.png')`;
       
       function updateHeaderText() {
-          const backCardText = document.querySelector('.card-text'); // adjust selector if different
-          if (!backCardText) return;
-          const t = translations[state.currentLanguage].ui;
-          backCardText.innerText = t.headerTitle;
-        }
-        updateHeaderText();
-        onLanguageChange(updateHeaderText);
-
+        const t = translations[state.currentLanguage].ui;
+        cardText.textContent = t?.headerTitle || "Memory Game";
+      }
+      updateHeaderText();
+      onLanguageChange(updateHeaderText);
+      
       const animalText = document.createElement("p");
       animalText.classList.add("animal-text");
       animalText.textContent = animals[animal];
-
+      
       back.appendChild(animalText);
       inner.appendChild(front);
       inner.appendChild(back);
