@@ -79,9 +79,22 @@ h1{
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
+.card-text {
+  color: #dba641;
+  font-family: var(--rye);
+  font-size: 1.2em;
+  margin-bottom: .6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+}
 .card-inner {
   transition: transform 0.6s;
   transform-style: preserve-3d;
@@ -143,6 +156,7 @@ label{
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
 }
 
 .input-group input {
