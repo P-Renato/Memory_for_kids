@@ -8,7 +8,11 @@ export function showResults(container) {
     const t = translations[state.currentLanguage]?.ui || translations.english.ui;
     const maxScore = Math.max(...scores);
     const winnerIndex = scores.indexOf(maxScore);
-    const winnerName = players[winnerIndex];
+
+    let winnerName = players[winnerIndex];
+    if (!winnerName) {
+        winnerName = t.defaultWinner || "You";
+    }
     console.log(winnerName);
     console.log("Current language:", state.currentLanguage);
     console.log("Translations:", translations[state.currentLanguage]);
@@ -31,21 +35,29 @@ export function showResults(container) {
     title.textContent = `🏆 ${t.winnerText}: ${winnerName}!`;
 
     const list = document.createElement('ul');
-    list.classList.add('points-list')
-    players.forEach((player, i) => {
+    list.classList.add('points-list');
+    if(players.length > 0) {
+        players.forEach((player, i) => {
+            const li = document.createElement('li');
+            li.textContent = `${player}: ${scores[i]} ${t.pointsText}`;
+            list.appendChild(li);
+        });    
+    } else {
         const li = document.createElement('li');
-        li.textContent = `${player}: ${scores[i]} ${t.pointsText}`;
+        li.textContent = `${t.congratulations}!`;
         list.appendChild(li);
-    });
+    }
 
     const victoryList = document.createElement('ul');
     victoryList.classList.add('victory-list');
-    for (const player of players) {
-        const li = document.createElement('li');
-        li.textContent = `${player}: ${state.victories[player] || 0} ${t.victoriesText}`;
-        victoryList.appendChild(li);
-    }
-
+    if(players.length > 0) {
+        for (const player of players) {
+            const li = document.createElement('li');
+            li.textContent = `${player}: ${state.victories[player] || 0} ${t.victoriesText}`;
+            victoryList.appendChild(li);
+        }
+    } 
+    
     const restartButton = document.createElement('button');
     restartButton.textContent = t.playAgain;
     restartButton.addEventListener('click', () => {

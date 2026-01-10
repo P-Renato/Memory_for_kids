@@ -112,7 +112,6 @@ export const animalsByLanguage = {
         }
     }
 };
-
 export const translations = {
   english: {
     ui: {
@@ -127,7 +126,9 @@ export const translations = {
       winnerText: "Winner",             
       pointsText: "points",             
       victoriesText: "victories",
-      playAgain: "Play Again"
+      playAgain: "Play Again",
+      defaultWinner: "You",
+      congratulations: "Congratulations"  // Added
     }
   },
   spanish: {
@@ -143,7 +144,9 @@ export const translations = {
       winnerText: "Ganador",
       pointsText: "puntos",
       victoriesText: "victorias",
-      playAgain: "Jugar de nuevo"
+      playAgain: "Jugar de nuevo",
+      defaultWinner: "Tú",
+      congratulations: "¡Felicidades"  // Added
     }
   },
   portuguese: {
@@ -159,7 +162,9 @@ export const translations = {
       winnerText: "Vencedor",
       pointsText: "pontos",
       victoriesText: "vitórias",
-      playAgain: "Jogar novamente"
+      playAgain: "Jogar novamente",
+      defaultWinner: "Você",
+      congratulations: "Parabéns"  // Added
     }
   },
   czech: {
@@ -175,7 +180,9 @@ export const translations = {
       winnerText: "Vítěz",
       pointsText: "body",
       victoriesText: "výhry",
-      playAgain: "Hrát znovu"
+      playAgain: "Hrát znovu",
+      defaultWinner: "Ty",
+      congratulations: "Gratulujeme"  // Added
     }
   },
   french: {
@@ -191,7 +198,9 @@ export const translations = {
       winnerText: "Gagnant",
       pointsText: "points",
       victoriesText: "victoires",
-      playAgain: "Rejouer"
+      playAgain: "Rejouer",
+      defaultWinner: "Toi",
+      congratulations: "Félicitations"  // Added
     }
   },
   german: {
@@ -207,7 +216,9 @@ export const translations = {
       winnerText: "Gewinner",
       pointsText: "Punkte",
       victoriesText: "Siege",
-      playAgain: "Nochmal spielen"
+      playAgain: "Nochmal spielen",
+      defaultWinner: "Du",
+      congratulations: "Herzlichen Glückwunsch"  // Added
     }
   },
   japanese: {
@@ -223,7 +234,9 @@ export const translations = {
       winnerText: "勝者",
       pointsText: "点数",
       victoriesText: "勝利",
-      playAgain: "もう一度遊ぶ"
+      playAgain: "もう一度遊ぶ",
+      defaultWinner: "あなた",
+      congratulations: "おめでとうございます"  // Added
     }
   }
 };
