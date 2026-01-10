@@ -232,7 +232,7 @@ input, .start-button, .add-player {
 }
 
 .selected-flag {
-  width: 40px;
+  width: 3em;
   height: 28px;
   border-radius: 4px;
   cursor: pointer;
@@ -253,15 +253,17 @@ input, .start-button, .add-player {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  padding: 6px;
+  padding: .2em;
   z-index: 10;
+  
 }
 
 .flag-dropdown.show {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 2em;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: .3em;
+  width: 5em;
 }
 
 .flag-option {
@@ -269,6 +271,7 @@ input, .start-button, .add-player {
   height: 20px;
   border-radius: 4px;
   cursor: pointer;
+  justify-content: center;
   transition: transform 0.2s;
 }
 
