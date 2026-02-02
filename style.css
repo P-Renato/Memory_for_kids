@@ -121,21 +121,70 @@ h1{
   font-size: 1.8em;
 }
 .sideBar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 22em;
-    max-height: vh;
-    align-items: center;
-    border: 5px solid var(--orangeColor);
-    border-radius: 12px;
-    margin: 2em;
-    padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 22em;
+  height: 100vh;
+  align-items: center;
+  border: 5px solid var(--orangeColor);
+  border-radius: 12px;
+  margin: 2em;
+  padding: 2em;
 }
 
+@media (max-width: 640px){
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .sideBar{
+    flex-direction: row;
+    min-width: 100vw;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap; 
+    height: 100%;
+    min-height: 85vh;
+  }
+  .board-table {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.5em;
+    padding: 1em;
+  }
+  .card {
+      width: 5.5em;
+      height: 7em;
+      margin: 0.3em;
+  }
+  .game-title{
+    font-size: 2.8em;
+  }
+  .card-text {
+      font-size: 0.9em;
+}
+  .sideBar > * {
+      flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  .player-list {
+      font-size: 1em;
+  }
+  
+  .sideBar button {
+      width: 8em;
+      font-size: 0.9em;
+  }
+  
+  label {
+      font-size: 1.5em;
+  }
+
+}
 .sideBar > * {
-    margin: .5em;
-    padding: .5em;
+  margin: .5em;
+  padding: .5em;
 }
 .sideBar > *:first-child {
   margin: 0;

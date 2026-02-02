@@ -72,18 +72,12 @@ export function createSidebar(container) {
         const text = document.createElement('p');
         text.textContent = `${index + 1} - ${name}`;
 
-        // const liPoints = document.createElement('li');
-        // const span = document.createElement('span');
-        // span.innerText = `${state.scores[index]} points`
-        // liPoints.appendChild(span)
-
         const deletePlayer = document.createElement('button');
         deletePlayer.innerText = 'X';
         deletePlayer.classList.add('delete-player');
         li.appendChild(text)
         li.appendChild(deletePlayer)
         playerList.appendChild(li);
-        // playerList.appendChild(liPoints);
 
         deletePlayer.addEventListener('click', ()=> {
             state.players.splice(index, 1);
