@@ -164,10 +164,6 @@ h1{
   .card-text {
       font-size: 0.9em;
 }
-  .sideBar > * {
-      flex-shrink: 0; /* Prevent shrinking */
-  }
-  
   .player-list {
       font-size: 1em;
   }
